@@ -4,7 +4,7 @@ token = '534494693:AAH4AXhld4mQl0YaHfFbTK2rLIcUHeFtRsc'
 
 URL = 'https://api.telegram.org/bot' + token + '/'
 
-with open('lastUpdateId.txt', 'r') as f: lastUpdateId = f.read()
+lastUpdateId = 0
 
 lastText = ''
 
@@ -44,8 +44,6 @@ def main():
 		updateId = get['update_id']
 		firstName = get['first_name']
 		lastName = get['last_name']
-
-		with open('lastUpdateId.txt', 'w') as f: f.write(str(updateId))
 
 		if updateId != lastUpdateId:
 			lastUpdateId = updateId
@@ -92,10 +90,6 @@ def main():
 				else:
 					sendMessage(chatId, '— В Академгородке при СССР была самая высокая плотность жителей с высшим образованием на планете. — Ха! Ты явно не бывал в Цюрихе и не пил с тамошними дворниками! — Я с ними пил еще в Академгородке.')
 			else:
-				with open('log.txt', 'r') as f:
-					t = f.read()
-				with open('log.txt', 'w') as f:
-					f.write(t + text + '\n')
 					sendMessage(chatId, 'Я ещё не умею на это отвечать, но даже этим разговором ты мне помагаешь стать лучше! ;)')
 
 			lastText = text
